@@ -39,6 +39,7 @@ class PostController extends Controller
         $post = new Post();
         $post->title = $request->title;
         $post->content = $request->content;
+        $post->user_id = auth()->id();
 
         if ($request->hasFile('image')) {
             $path = $request->file('image')->store('images', 'public');
@@ -53,9 +54,11 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Post $post)
+    public function show($id)
     {
-        //
+        $post = Post::find($id);
+        $comments = $post->comments;
+        return view('post.show', ['post' => $post, 'comments' => $comments]);
     }
 
     /**

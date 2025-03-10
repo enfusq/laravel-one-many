@@ -27,8 +27,9 @@
                                         Delete
                                     </button>
                                 </form>
+                                <a href="/posts/{{ $post->id }}" type="button" class="button">Show</a>
                             </li>
-                        @endforeach
+                            @endforeach
                         </ul>
                     </div>
                 </div>
